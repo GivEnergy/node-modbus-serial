@@ -17,6 +17,8 @@ describe("Promise", function() {
             const value = 1;
             const deviceIdCode = 1;
             const objectId = 2;
+            const functionCode = 100;
+            const data = [1, 2, 3];
 
             modbusRTU.open();
             expect(modbusRTU.readCoils(address, arg)).to.be.instanceOf(Promise);
@@ -28,11 +30,12 @@ describe("Promise", function() {
             expect(modbusRTU.writeRegisters(address, [value])).to.be.instanceOf(Promise);
             expect(modbusRTU.readDeviceIdentification(deviceIdCode, objectId)).to.be.instanceOf(Promise);
             expect(modbusRTU.maskWriteRegister(address, arg, arg)).to.be.instanceOf(Promise);
+            expect(modbusRTU.customFunction(functionCode, data)).to.be.instanceOf(Promise);
         });
     });
 
     describe("#setID", function() {
-        it("should set a unit id on modubusRtu instance", function() {
+        it("should set a unit id on modbusRtu instance", function() {
             const someId = 1;
             modbusRTU.setID(someId);
             expect(modbusRTU._unitID).to.be.equal(someId);
@@ -40,7 +43,7 @@ describe("Promise", function() {
     });
 
     describe("#getID", function() {
-        it("should return the unit id of modubusRtu instance", function() {
+        it("should return the unit id of modbusRtu instance", function() {
             const someId = 1;
             modbusRTU._unitID = someId;
             expect(modbusRTU.getID()).to.be.equal(someId);
@@ -48,7 +51,7 @@ describe("Promise", function() {
     });
 
     describe("#setTimeout", function() {
-        it("should set a timeout on modubusRtu instance", function() {
+        it("should set a timeout on modbusRtu instance", function() {
             const timeout = 1000;
             modbusRTU.setTimeout(timeout);
             expect(modbusRTU._timeout).to.be.equal(timeout);
@@ -56,7 +59,7 @@ describe("Promise", function() {
     });
 
     describe("#getTimeout", function() {
-        it("should return the timeout of modubusRtu instance", function() {
+        it("should return the timeout of modbusRtu instance", function() {
             modbusRTU._timeout = 1000;
             expect(modbusRTU.getTimeout()).to.be.equal(modbusRTU._timeout);
         });
